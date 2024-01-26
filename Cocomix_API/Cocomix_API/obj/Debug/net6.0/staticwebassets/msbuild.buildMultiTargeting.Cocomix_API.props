@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Cocomix_API.props" />
+</Project>

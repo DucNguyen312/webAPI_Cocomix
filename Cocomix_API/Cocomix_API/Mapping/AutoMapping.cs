@@ -12,10 +12,14 @@ namespace Cocomix_API.Mapping
             //Product
             CreateMap<Product, ProductReponse>().ReverseMap();
             CreateMap<Product, ProductDTO>().ReverseMap();
-
+         
             //Category
             CreateMap<Category, CategoryReponse>().ReverseMap();
             CreateMap<Category, CategoryDTO>().ReverseMap();
+
+            //Customer
+            CreateMap<Customer , CustomerReponse>().ReverseMap();
+            CreateMap<Customer , CustomerDTO>().ReverseMap();
         }
     }
 }

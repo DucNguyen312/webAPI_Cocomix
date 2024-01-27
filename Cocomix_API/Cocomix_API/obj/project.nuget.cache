@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Iw6KGZIzc4hSoJwraEUo/of4YUy7m4mVVpzb4ilW4GLOfmhrCaH5v7WbNSfC8NXV3Qbfm9sxgwakVYCtQQVegQ==",
+  "dgSpecHash": "rKGPGF54GPbUGjI3wmi1xTn95nUp/MZV0/jvcpuNAHmwOjLF1cWdARYXDAXDlB0JOlAZ0mjMKaIF5MUytG72ew==",
   "success": true,
-  "projectFilePath": "D:\\Cocomix\\Cocomix_API\\Cocomix_API\\Cocomix_API.csproj",
+  "projectFilePath": "D:\\Cocomix\\webAPI_Cocomix\\Cocomix_API\\Cocomix_API\\Cocomix_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

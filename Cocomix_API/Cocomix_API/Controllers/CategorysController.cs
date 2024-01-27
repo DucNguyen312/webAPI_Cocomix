@@ -1,4 +1,5 @@
 ﻿using Cocomix_API.DTO;
+using Cocomix_API.Models;
 using Cocomix_API.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -90,6 +91,40 @@ namespace Cocomix_API.Controllers
             }
         }
 
-        
+        [HttpGet("/{id}/products")]
+        public async Task<IActionResult> getListProductByCategory(int id) 
+        {
+           
+                return Ok(await _categoryService.getListProductByCategoryID(id));
+           
+            
+        }
+
+        [HttpPost("/{idCategory}/Product/{idProduct}")]
+        public async Task<IActionResult> addProducttoCategory(int idCategory, int idProduct)
+        {
+            try
+            {
+                return Ok(await _categoryService.addProducttoCategory(idCategory, idProduct));
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpDelete("/{idCategory}/Product/{idProduct}")]
+        public async Task<IActionResult> deleteProducttoCategory(int idCategory, int idProduct)
+        {
+            try
+            {
+                var s = await _categoryService.deleteProductToCategory(idCategory, idProduct);
+                return s != null ? Ok(s) : NotFound();
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
     }
 }

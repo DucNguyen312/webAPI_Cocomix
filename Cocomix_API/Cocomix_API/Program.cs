@@ -18,10 +18,13 @@ builder.Services.AddDbContext<QLCHContext>(option =>
     option.UseSqlServer(builder.Configuration.GetConnectionString("Mydb"));
 });
 
+
+
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddScoped<ProductService, ProductServiceIMPL>();
 builder.Services.AddScoped<CategoryService, CategoryServiceIMPL>();
+builder.Services.AddScoped<CustomerService, CustomerServiceIMPL>();
 
 var app = builder.Build();
 

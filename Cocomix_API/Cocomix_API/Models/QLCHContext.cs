@@ -22,6 +22,7 @@ namespace Cocomix_API.Models
         public virtual DbSet<Order> Orders { get; set; } = null!;
         public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; } = null!;
         public virtual DbSet<User> Users { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -163,23 +164,27 @@ namespace Cocomix_API.Models
                     .HasColumnName("price");
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
+            });
 
-                entity.HasMany(d => d.Categories)
-                    .WithMany(p => p.Products)
-                    .UsingEntity<Dictionary<string, object>>(
-                        "ProductCategory",
-                        l => l.HasOne<Category>().WithMany().HasForeignKey("CategoryId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__product_c__categ__5DCAEF64"),
-                        r => r.HasOne<Product>().WithMany().HasForeignKey("ProductId").OnDelete(DeleteBehavior.ClientSetNull).HasConstraintName("FK__product_c__produ__5CD6CB2B"),
-                        j =>
-                        {
-                            j.HasKey("ProductId", "CategoryId").HasName("PK__product___BF2C7E55F1135706");
+            modelBuilder.Entity<ProductCategory>(entity =>
+            {
+                entity.ToTable("product_category");
 
-                            j.ToTable("product_category");
+                entity.Property(e => e.Id).HasColumnName("id");
 
-                            j.IndexerProperty<int>("ProductId").HasColumnName("productID");
+                entity.Property(e => e.CategoryId).HasColumnName("categoryID");
 
-                            j.IndexerProperty<int>("CategoryId").HasColumnName("categoryID");
-                        });
+                entity.Property(e => e.ProductId).HasColumnName("productID");
+
+                entity.HasOne(d => d.Category)
+                    .WithMany(p => p.ProductCategories)
+                    .HasForeignKey(d => d.CategoryId)
+                    .HasConstraintName("FK__product_c__categ__70DDC3D8");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.ProductCategories)
+                    .HasForeignKey(d => d.ProductId)
+                    .HasConstraintName("FK__product_c__produ__6FE99F9F");
             });
 
             modelBuilder.Entity<User>(entity =>

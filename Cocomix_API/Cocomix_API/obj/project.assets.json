@@ -2504,11 +2504,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Cocomix\\Cocomix_API\\Cocomix_API\\Cocomix_API.csproj",
+      "projectUniqueName": "D:\\Cocomix\\webAPI_Cocomix\\Cocomix_API\\Cocomix_API\\Cocomix_API.csproj",
       "projectName": "Cocomix_API",
-      "projectPath": "D:\\Cocomix\\Cocomix_API\\Cocomix_API\\Cocomix_API.csproj",
+      "projectPath": "D:\\Cocomix\\webAPI_Cocomix\\Cocomix_API\\Cocomix_API\\Cocomix_API.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "D:\\Cocomix\\Cocomix_API\\Cocomix_API\\obj\\",
+      "outputPath": "D:\\Cocomix\\webAPI_Cocomix\\Cocomix_API\\Cocomix_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

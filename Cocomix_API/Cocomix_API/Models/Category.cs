@@ -7,12 +7,12 @@ namespace Cocomix_API.Models
     {
         public Category()
         {
-            Products = new HashSet<Product>();
+            ProductCategories = new HashSet<ProductCategory>();
         }
 
         public int CategoryId { get; set; }
         public string? Name { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }

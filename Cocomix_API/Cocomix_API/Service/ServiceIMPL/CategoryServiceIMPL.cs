@@ -27,15 +27,20 @@ namespace Cocomix_API.Service.ServiceIMPL
 
         public async Task<string> addProducttoCategory(int idCategory, int idProduct)
         {
-            var category = await db.Categories.FindAsync(idCategory);
-            var product = await db.Products.FindAsync(idProduct);
+            //FindAsync là viết tắc của SELECT * FROM Bảng Where id = ?
+            var category = await db.Categories.FindAsync(idCategory);  //Tìm loại
+            var product = await db.Products.FindAsync(idProduct);  //Tìm sản phẩm
 
-            if(product != null)
+            if(product != null) //Kiểm tra sản phẩm có tồn tại hay không ?
             {
                 if(category != null) 
                 {
+                    //.FirstOrDefaultAsync : Lấy dòng đầu tiên trong dữ liệu   (pc => pc...) pc là từ viết tắt của ProductCategory , muốn đặt thành gì cũng được
+                    //Select * from ProductCategory pc where pc.ProductID = ? and pc.CategoryID = ? 
                     var existingRelation = await db.ProductCategories.FirstOrDefaultAsync(pc => pc.ProductId == idProduct && pc.CategoryId == idCategory);
-                    if(existingRelation == null) 
+                    //Công dụng : Kiểm tra sản phẩm đã tồn tại thể loại đó hay chưa ?
+
+                    if(existingRelation == null) //Nếu chưa tồn tại thì ..
                     {
                         var pc = new ProductCategory
                         {
@@ -45,7 +50,7 @@ namespace Cocomix_API.Service.ServiceIMPL
                         db.ProductCategories.Add(pc);
                         await db.SaveChangesAsync();
                         return "Add category to product sccess";
-                    }
+                    } //Tồn tại thì thông báo đã tồn tại
                     return "Exist Relation";
                 }
                 return "not found category";
@@ -67,13 +72,14 @@ namespace Cocomix_API.Service.ServiceIMPL
 
         public async Task<string> deleteProductToCategory(int idCategory, int idProduct)
         {
+            //Kiểm tra xem sản phẩm có thể loại đó hay ko ?
             var product_category = await db.ProductCategories.FirstOrDefaultAsync(pc => pc.ProductId == idProduct && pc.CategoryId == idCategory );
-            if (product_category != null)
+            if (product_category != null) //Nếu có thì xóa
             {
                 db.ProductCategories.Remove(product_category);
                 await db.SaveChangesAsync();
                 return "Delete product to category success";
-            }
+            } //Không có thì báo null hoặc trả thẳng về "không tìm thấy để xóa"
             return null;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Cocomix_API.Models
 {
@@ -17,10 +18,14 @@ namespace Cocomix_API.Models
         public decimal? TotalPrice { get; set; }
         public int? TotalProduct { get; set; }
         public DateTime? OrderDate { get; set; }
-        public int? UserId { get; set; }
 
+        [JsonIgnore]
+        public int? UserId { get; set; }
+        [JsonIgnore]
         public virtual User? User { get; set; }
+        [JsonIgnore]
         public virtual ICollection<CustomerOrder> CustomerOrders { get; set; }
+        [JsonIgnore]
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

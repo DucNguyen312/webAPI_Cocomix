@@ -130,6 +130,8 @@ namespace Cocomix_API.Models
 
                 entity.Property(e => e.ProductId).HasColumnName("productID");
 
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
                 entity.Property(e => e.TotalPrice)
                     .HasColumnType("decimal(10, 2)")
                     .HasColumnName("totalPrice");
@@ -137,12 +139,14 @@ namespace Cocomix_API.Models
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.OrderId)
-                    .HasConstraintName("FK__orderDeta__order__4AB81AF0");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__orderDeta__order__17036CC0");
 
                 entity.HasOne(d => d.Product)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ProductId)
-                    .HasConstraintName("FK__orderDeta__produ__49C3F6B7");
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK__orderDeta__produ__17F790F9");
             });
 
             modelBuilder.Entity<Product>(entity =>

@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cocomix_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Categories")]
     [ApiController]
-    public class CategorysController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly CategoryService _categoryService;
        
-        public CategorysController(CategoryService categoryService)
+        public CategoriesController(CategoryService categoryService)
         {
             _categoryService = categoryService;
         }
@@ -91,21 +91,26 @@ namespace Cocomix_API.Controllers
             }
         }
 
-        [HttpGet("/{id}/products")]
+        [HttpGet("{id}/products")]
         public async Task<IActionResult> getListProductByCategory(int id) 
         {
-           
+            try
+            {
                 return Ok(await _categoryService.getListProductByCategoryID(id));
-           
-            
+            }
+                
+            catch 
+            { 
+                return BadRequest(); 
+            }
         }
 
-        [HttpPost("/{idCategory}/Product/{idProduct}")]
+        [HttpPost("{idCategory}/Product/{idProduct}")]
         public async Task<IActionResult> addProducttoCategory(int idCategory, int idProduct)
         {
             try
             {
-                return Ok(await _categoryService.addProducttoCategory(idCategory, idProduct));
+                return Ok(await _categoryService.addProducttoCategory(idCategory, idProduct));  //Do không có null thì trả thẳng kq lun
             }
             catch
             {
@@ -113,13 +118,15 @@ namespace Cocomix_API.Controllers
             }
         }
 
-        [HttpDelete("/{idCategory}/Product/{idProduct}")]
+        [HttpDelete("{idCategory}/Product/{idProduct}")]
         public async Task<IActionResult> deleteProducttoCategory(int idCategory, int idProduct)
         {
             try
             {
-                var s = await _categoryService.deleteProductToCategory(idCategory, idProduct);
-                return s != null ? Ok(s) : NotFound();
+                var s = await _categoryService.deleteProductToCategory(idCategory, idProduct);  //Có null nên phải kiểm tra
+                if (s == null) 
+                    return NotFound();
+                return Ok(s);
             }
             catch
             {

@@ -20,6 +20,10 @@ namespace Cocomix_API.Mapping
             //Customer
             CreateMap<Customer , CustomerReponse>().ReverseMap();
             CreateMap<Customer , CustomerDTO>().ReverseMap();
+
+            //Order
+            CreateMap<Order , OrderDTO>().ReverseMap();
+            CreateMap<Order , DataOrderDTO>().ReverseMap();
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Cocomix_API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e09956661c5d7acb2ea68cf3bc9411c95727393a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ae19541179ad7da9f6cf07e4c83f8ae425cf34f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Cocomix_API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Cocomix_API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

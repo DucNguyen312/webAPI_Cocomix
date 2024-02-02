@@ -60,7 +60,10 @@ namespace Cocomix_API.Service.ServiceIMPL
             var product_old = await _context.Products.FindAsync(id);
             if (product_old != null)
             {
-                _mapper.Map(productDTO, product_old);
+                product_old.Name = productDTO.Name ?? product_old.Name;
+                product_old.Note = productDTO.Note ?? product_old.Note;
+                product_old.Price = productDTO.Price ?? product_old.Price;
+                product_old.Quantity = productDTO.Quantity ?? product_old.Quantity;
                 await _context.SaveChangesAsync();
                 return _mapper.Map<ProductReponse>(product_old);
             }

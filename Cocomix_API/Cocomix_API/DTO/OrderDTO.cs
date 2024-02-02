@@ -9,7 +9,7 @@ namespace Cocomix_API.DTO
         public List<ProductOrder> Product { get; set; }
         public string? Note { get; set; }
         public string? Status { get; set; }
-        public DateTime? OrderDate { get; set; }
+        
 
     }
 }

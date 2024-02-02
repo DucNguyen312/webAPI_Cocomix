@@ -52,14 +52,8 @@ namespace Cocomix_API.Service.ServiceIMPL
             //Cập nhật lại order
             newOrder.TotalPrice = total_price;
             newOrder.TotalProduct = total_product;
+            newOrder.OrderDate = DateTime.Now;
             await db.SaveChangesAsync();
-
-            var options = new JsonSerializerOptions
-            {
-                ReferenceHandler = ReferenceHandler.Preserve,
-            };
-
-            var json = JsonSerializer.Serialize(newOrder, options);
 
             return newOrder;
         }
@@ -97,7 +91,11 @@ namespace Cocomix_API.Service.ServiceIMPL
             var order = await db.Orders.FindAsync(id);
             if(order != null)
             {
-                map.Map(dataOrderDTO, order);
+                order.Note = dataOrderDTO.Note ?? order.Note;
+                order.Status = dataOrderDTO.Status ?? order.Status;
+                order.TotalProduct = dataOrderDTO.TotalProduct ?? order.TotalProduct;
+                order.TotalPrice = dataOrderDTO.TotalPrice ?? order.TotalPrice;
+                order.OrderDate = dataOrderDTO.OrderDate ?? order.OrderDate;
                 await db.SaveChangesAsync();
                 return order;
             }

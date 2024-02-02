@@ -58,7 +58,9 @@ namespace Cocomix_API.Service.ServiceIMPL
             var customer_old = await db.Customers.FindAsync(id);
             if( customer_old != null )
             {
-                map.Map(customerDTO , customer_old );
+                customer_old.Name = customerDTO.Name ?? customer_old.Name;
+                customer_old.Address = customerDTO.Address ?? customer_old.Address;
+                customer_old.PhoneNumber = customerDTO.PhoneNumber ?? customer_old.PhoneNumber;
                 await db.SaveChangesAsync();
                 return map.Map<CustomerReponse>(customer_old);
             }

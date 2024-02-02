@@ -120,9 +120,9 @@ namespace Cocomix_API.Service.ServiceIMPL
         public async Task<CategoryReponse> UpdateCategory(int id, CategoryDTO categoryDTO)
         {
             var category_old = await db.Categories.FindAsync(id);
-            if (category_old != null)
+            if (category_old != null || categoryDTO != null)
             {
-                map.Map(categoryDTO, category_old);
+                category_old.Name = categoryDTO.Name ?? category_old.Name;
                 await db.SaveChangesAsync();
                 return map.Map<CategoryReponse>(category_old);
             }

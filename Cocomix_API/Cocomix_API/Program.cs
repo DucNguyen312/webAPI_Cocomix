@@ -26,6 +26,7 @@ builder.Services.AddScoped<ProductService, ProductServiceIMPL>();
 builder.Services.AddScoped<CategoryService, CategoryServiceIMPL>();
 builder.Services.AddScoped<CustomerService, CustomerServiceIMPL>();
 builder.Services.AddScoped<OrderService, OrderServiceIMPL>();
+builder.Services.AddScoped<OrderDetailsService, OrderDetailServiceIMPL>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
